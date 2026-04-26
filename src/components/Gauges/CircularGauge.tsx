@@ -13,6 +13,7 @@ interface CircularGaugeProps {
   glow?: boolean;
   showProgress?: boolean;
   showNeedle?: boolean;
+  showBackground?: boolean;
 }
 
 export const CircularGauge: React.FC<CircularGaugeProps> = ({
@@ -26,7 +27,8 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
   className = "",
   glow = true,
   showProgress = true,
-  showNeedle = false
+  showNeedle = false,
+  showBackground = true
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -44,21 +46,23 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
         className="overflow-hidden transform -rotate-90"
       >
         {/* Background Track */}
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke="rgba(255, 255, 255, 0.05)"
-          strokeWidth={strokeWidth}
-          fill="transparent"
-          strokeLinecap="round"
-          style={{
-            strokeDasharray: `${circumference}`,
-            strokeDashoffset: circumference - (angleRange / 360) * circumference,
-            transform: `rotate(${startAngle + 90}deg)`,
-            transformOrigin: '50% 50%'
-          }}
-        />
+        {showBackground && (
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth={strokeWidth}
+            fill="transparent"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: `${circumference}`,
+              strokeDashoffset: circumference - (angleRange / 360) * circumference,
+              transform: `rotate(${startAngle + 90}deg)`,
+              transformOrigin: '50% 50%'
+            }}
+          />
+        )}
         
         {/* Foreground Progress */}
         {showProgress && (
@@ -84,33 +88,22 @@ export const CircularGauge: React.FC<CircularGaugeProps> = ({
         )}
       </svg>
 
-      {/* Modern Needle Pointer (Line and Arrow) */}
+      {/* Floating Arrowhead Pointer */}
       {showNeedle && (
         <motion.div
-          className="absolute top-1/2 left-1/2 w-full h-full pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           animate={{ rotate: currentAngle }}
           transition={{ type: "spring", stiffness: 80, damping: 12 }}
           style={{ transformOrigin: '50% 50%' }}
         >
           <svg viewBox="0 0 100 100" className="absolute top-0 left-0 w-full h-full transform rotate-90">
-             {/* Center circle pivot */}
-             <circle cx="50" cy="50" r="1.5" fill="white" fillOpacity="0.8" />
-             
-             {/* Needle body */}
+             {/* Arrowhead placed inside the arc curvature */}
              <path 
-               d="M 50 50 L 50 35" 
-               stroke="white" 
-               strokeWidth="0.8" 
-               strokeOpacity="0.4"
-             />
-
-             {/* Arrowhead closer to rim */}
-             <path 
-               d="M 50 32 L 52.5 38 L 50 37 L 47.5 38 Z" 
-               fill="white" 
-               style={{ 
-                 filter: 'drop-shadow(0 0 1.5px white)',
-               }}
+                d="M 50 12 L 53 18 L 50 17 L 47 18 Z" 
+                fill="white" 
+                style={{ 
+                  filter: 'drop-shadow(0 0 1.5px white)',
+                }}
              />
           </svg>
         </motion.div>
