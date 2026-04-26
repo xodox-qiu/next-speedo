@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { CircularGauge } from './Gauges/CircularGauge';
 import { VerticalBar } from './Gauges/VerticalBar';
 import { SegmentedGauge } from './Gauges/SegmentedGauge';
-import { useHUD } from '../hooks/useHUD';
+import { useHUD } from '../hooks/script';
 import { Fuel, ArrowBigLeft, ArrowBigRight, Eye, ShieldCheck, ShieldAlert, Zap, Activity } from 'lucide-react';
 
 export const SpeedometerHUD: React.FC = () => {
