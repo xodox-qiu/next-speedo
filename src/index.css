@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Exo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-hud-primary: #00d2ff;
+  --color-hud-secondary: #9dff00;
+  --color-hud-danger: #ff2a2a;
+  --color-hud-accent: #ff00ff;
+
+  --glow-blue: 0 0 10px rgba(0, 210, 255, 0.8);
+  --glow-white: 0 0 8px rgba(255, 255, 255, 0.6);
+
+  --animate-scanline: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: transparent;
+  color: white;
+  overflow: hidden;
+}
+
+/* Chromatic aberration effect class */
+.chromatic-aberration {
+  position: relative;
+  text-shadow: 
+    -1.5px 0 0 rgba(255, 0, 255, 0.7),
+    1.5px 0 0 rgba(0, 255, 255, 0.7),
+    0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+.glow-blue {
+  filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.6));
+}
+
+.glow-green {
+  filter: drop-shadow(0 0 8px rgba(157, 255, 0, 0.6));
+}
+
+.glow-red {
+  filter: drop-shadow(0 0 8px rgba(255, 42, 42, 0.6));
+}

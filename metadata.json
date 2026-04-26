@@ -1,0 +1,6 @@
+{
+  "name": "Speedometer HUD",
+  "description": "A high-performance cyberpunk-style car speedometer HUD with RPM, speed, and gear indicators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
