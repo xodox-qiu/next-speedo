@@ -49,8 +49,8 @@ export const SpeedometerHUD: React.FC = () => {
               color={isRedlining ? 'var(--color-hud-danger)' : 'var(--color-hud-primary)'}
               startAngle={-230}
               endAngle={50}
-              showProgress={false} 
-              showNeedle={false}
+              showProgress={true} 
+              showNeedle={true}
             />
 
             {/* RPM Numbers & Separators (Ticks) */}
